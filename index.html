@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TI-84 Graphic Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="display-section">
+            <div class="graph-display" id="graphDisplay">
+                <canvas id="graphCanvas" width="320" height="240"></canvas>
+            </div>
+            <div class="text-display">
+                <div class="history" id="history"></div>
+                <div class="input-display" id="inputDisplay">0</div>
+            </div>
+        </div>
+
+        <div class="function-buttons">
+            <button class="func-btn" data-func="Y1">Y₁</button>
+            <button class="func-btn" data-func="Y2">Y₂</button>
+            <button class="func-btn" data-func="Y3">Y₃</button>
+            <button class="func-btn" data-func="Y4">Y₄</button>
+            <button class="func-btn" data-func="GRAPH">GRAPH</button>
+        </div>
+
+        <div class="calculator-buttons">
+            <!-- Row 1 -->
+            <button class="btn" data-action="clear">CLEAR</button>
+            <button class="btn" data-action="delete">DEL</button>
+            <button class="btn" data-action="power">^</button>
+            <button class="btn" data-action="sqrt">√</button>
+
+            <!-- Row 2 -->
+            <button class="btn" data-number="7">7</button>
+            <button class="btn" data-number="8">8</button>
+            <button class="btn" data-number="9">9</button>
+            <button class="btn" data-action="divide">÷</button>
+
+            <!-- Row 3 -->
+            <button class="btn" data-number="4">4</button>
+            <button class="btn" data-number="5">5</button>
+            <button class="btn" data-number="6">6</button>
+            <button class="btn" data-action="multiply">×</button>
+
+            <!-- Row 4 -->
+            <button class="btn" data-number="1">1</button>
+            <button class="btn" data-number="2">2</button>
+            <button class="btn" data-number="3">3</button>
+            <button class="btn" data-action="subtract">−</button>
+
+            <!-- Row 5 -->
+            <button class="btn" data-number="0">0</button>
+            <button class="btn" data-action="decimal">.</button>
+            <button class="btn" data-action="equals">=</button>
+            <button class="btn" data-action="add">+</button>
+
+            <!-- Row 6 -->
+            <button class="btn" data-action="sin">sin</button>
+            <button class="btn" data-action="cos">cos</button>
+            <button class="btn" data-action="tan">tan</button>
+            <button class="btn" data-action="log">log</button>
+
+            <!-- Row 7 -->
+            <button class="btn" data-action="ln">ln</button>
+            <button class="btn" data-action="factorial">n!</button>
+            <button class="btn" data-action="pi">π</button>
+            <button class="btn" data-action="ee">e</button>
+
+            <!-- Row 8 -->
+            <button class="btn" data-action="leftparen">(</button>
+            <button class="btn" data-action="rightparen">)</button>
+            <button class="btn" data-action="negate">±</button>
+            <button class="btn" data-action="mode">MODE</button>
+        </div>
+
+        <div class="mode-section">
+            <label>
+                <input type="radio" name="angle-mode" value="deg" checked> DEG
+            </label>
+            <label>
+                <input type="radio" name="angle-mode" value="rad"> RAD
+            </label>
+        </div>
+    </div>
+
+    <!-- Graph Input Modal -->
+    <div id="graphModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enter Function</h2>
+            <div class="graph-input-section">
+                <label id="funcLabel">Y₁ =</label>
+                <input type="text" id="funcInput" placeholder="e.g., x^2 - 3*x + 2">
+                <button id="funcOk">OK</button>
+                <button id="funcCancel">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
