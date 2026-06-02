@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.calculator-container {
+    background: linear-gradient(145deg, #2a3d5c, #3d5a80);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Display Section */
+.display-section {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.graph-display {
+    background: #0a0a0a;
+    border: 2px solid #444;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#graphCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #1a1a1a;
+}
+
+.text-display {
+    background: #0a0a0a;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 60px;
+}
+
+.history {
+    font-size: 12px;
+    color: #888;
+    min-height: 16px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+#inputDisplay {
+    font-size: 24px;
+    color: #0f0;
+    font-weight: bold;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    min-height: 30px;
+}
+
+/* Function Buttons */
+.function-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.func-btn {
+    padding: 10px;
+    background: #4a5f7f;
+    color: #fff;
+    border: 2px solid #556b8f;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.func-btn:hover {
+    background: #556b8f;
+    transform: translateY(-2px);
+}
+
+.func-btn:active {
+    transform: translateY(0);
+}
+
+.func-btn.active {
+    background: #0f0;
+    color: #000;
+}
+
+/* Calculator Buttons */
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 15px;
+    background: #556b8f;
+    color: #fff;
+    border: 2px solid #667d9f;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background: #667d9f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn[data-action="equals"] {
+    background: #2ecc71;
+    border-color: #27ae60;
+    grid-column: span 2;
+}
+
+.btn[data-action="equals"]:hover {
+    background: #27ae60;
+}
+
+.btn[data-action="clear"],
+.btn[data-action="delete"] {
+    background: #e74c3c;
+    border-color: #c0392b;
+}
+
+.btn[data-action="clear"]:hover,
+.btn[data-action="delete"]:hover {
+    background: #c0392b;
+}
+
+.btn[data-action="add"],
+.btn[data-action="subtract"],
+.btn[data-action="multiply"],
+.btn[data-action="divide"] {
+    background: #f39c12;
+    border-color: #d68910;
+}
+
+.btn[data-action="add"]:hover,
+.btn[data-action="subtract"]:hover,
+.btn[data-action="multiply"]:hover,
+.btn[data-action="divide"]:hover {
+    background: #d68910;
+}
+
+/* Mode Section */
+.mode-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+.mode-section label {
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.mode-section input[type="radio"] {
+    cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #2a3d5c;
+    margin: 10% auto;
+    padding: 30px;
+    border: 3px solid #556b8f;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.close {
+    color: #bbb;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+}
+
+.graph-input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#funcLabel {
+    color: #0f0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#funcInput {
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #556b8f;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+}
+
+#funcInput:focus {
+    outline: none;
+    border-color: #0f0;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+.graph-input-section button {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #556b8f;
+    border-radius: 6px;
+    background: #556b8f;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.graph-input-section button:hover {
+    background: #667d9f;
+}
+
+#funcOk {
+    background: #2ecc71;
+    border-color: #27ae60;
+}
+
+#funcOk:hover {
+    background: #27ae60;
+}
+
+#funcCancel {
+    background: #e74c3c;
+    border-color: #c0392b;
+}
+
+#funcCancel:hover {
+    background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .calculator-container {
+        padding: 15px;
+        max-width: 100%;
+        margin: 10px;
+    }
+
+    .btn {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    #inputDisplay {
+        font-size: 20px;
+    }
+}
